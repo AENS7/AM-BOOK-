@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="warm">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AM-Book | Perpustakaan Digital</title>
+  <meta name="description" content="AM-Book, perpustakaan digital yang bisa dibaca langsung tanpa akun.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="landing-body">
+
+  <main class="landing" id="landing">
+    <!-- Ganti img/perpustakaan.jpg dengan foto perpustakaan / rak buku pilihan Kakak -->
+    <div class="landing-bg" role="img" aria-label="Rak buku perpustakaan"></div>
+    <div class="landing-overlay"></div>
+
+    <header class="landing-top">
+      <a href="index.html" class="brand">AM-Book</a>
+      <div class="theme-switch" role="group" aria-label="Pilih tema">
+        <button type="button" data-theme-btn="light">Terang</button>
+        <button type="button" data-theme-btn="warm">Warm</button>
+        <button type="button" data-theme-btn="dark">Gelap</button>
+      </div>
+    </header>
+
+    <section class="landing-hero">
+      <h1>Baca buku apa saja, kapan saja</h1>
+      <p>AM-Book adalah perpustakaan digital gratis. Pilih buku dari rak, simpan yang ingin dibaca nanti, dan biarkan
+        pengingat istirahat menjaga matamu tetap nyaman.</p>
+      <a href="dashboard.html" class="btn btn-primary btn-lg" id="startBtn">Mulai Membaca</a>
+    </section>
+
+    <footer class="landing-foot">
+      <span>Tanpa login</span>
+      <span>Bookmark tersimpan di perangkatmu</span>
+      <span>Pengingat istirahat tiap 2 jam</span>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

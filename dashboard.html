@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard | AM-Book</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="index.html" class="brand">AM-Book</a>
+
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false"
+      aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" id="mainNav" aria-label="Navigasi utama">
+      <a href="#beranda" data-view-link="beranda">Beranda</a>
+      <a href="#katalog" data-view-link="katalog">Katalog</a>
+      <a href="#profile" data-view-link="profile">Profile</a>
+      <a href="#bookmark" data-view-link="bookmark">Bookmark <span class="badge" id="bookmarkCount">0</span></a>
+      <a href="#tentang" data-view-link="tentang">Tentang Kami</a>
+      <div class="theme-switch" role="group" aria-label="Pilih tema">
+        <button type="button" data-theme-btn="light">Terang</button>
+        <button type="button" data-theme-btn="warm">Warm</button>
+        <button type="button" data-theme-btn="dark">Gelap</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+
+    <!-- BERANDA -->
+    <section class="view" id="view-beranda" data-view="beranda">
+      <div class="view-head">
+        <h1>Selamat datang di AM-Book</h1>
+        <p>Pilih satu buku dari rak, lalu mulai membaca.</p>
+      </div>
+      <div class="bookshelf" id="featuredShelf" aria-label="Rak buku pilihan"></div>
+      <div class="center">
+        <a href="#katalog" class="btn btn-ghost" data-view-link="katalog">Lihat semua buku</a>
+      </div>
+    </section>
+
+    <!-- KATALOG -->
+    <section class="view" id="view-katalog" data-view="katalog" hidden>
+      <div class="view-head">
+        <h1>Katalog buku</h1>
+        <p>Cari berdasarkan judul atau penulis, atau saring menurut kategori.</p>
+      </div>
+      <div class="toolbar">
+        <label class="search">
+          <span class="sr-only">Cari buku</span>
+          <input type="search" id="searchInput" placeholder="Cari judul atau penulis">
+        </label>
+        <div class="chips" id="categoryChips" role="group" aria-label="Kategori"></div>
+      </div>
+      <div class="bookshelf" id="catalogShelf" aria-live="polite"></div>
+      <p class="empty" id="catalogEmpty" hidden>Tidak ada buku yang cocok. Coba kata kunci atau kategori lain.</p>
+    </section>
+
+    <!-- PROFILE (statis, tanpa data pengguna) -->
+    <section class="view" id="view-profile" data-view="profile" hidden>
+      <div class="view-head">
+        <h1>Profile</h1>
+        <p>AM-Book tidak memakai akun, jadi tidak ada data pribadi yang disimpan.</p>
+      </div>
+      <div class="info-grid">
+        <article class="info-card">
+          <h2>Cara memakai</h2>
+          <ol>
+            <li>Buka Katalog dan pilih buku.</li>
+            <li>Tekan Mulai Baca untuk membuka halaman membaca.</li>
+            <li>Timer berjalan selama kamu membaca.</li>
+            <li>Setelah 2 jam, kamu diajak istirahat 5 menit.</li>
+          </ol>
+        </article>
+        <article class="info-card">
+          <h2>Yang tersimpan di perangkatmu</h2>
+          <p>Hanya daftar Bookmark, beserta halaman terakhir yang kamu baca pada buku yang di-bookmark. Data ini ada di
+            browser ini saja dan hilang jika kamu menghapus data situs.</p>
+        </article>
+        <article class="info-card">
+          <h2>Pilih tampilan</h2>
+          <p>Ganti tema Terang, Warm, atau Gelap kapan saja lewat tombol di navigasi.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- BOOKMARK -->
+    <section class="view" id="view-bookmark" data-view="bookmark" hidden>
+      <div class="view-head">
+        <h1>Bookmark</h1>
+        <p>Buku yang kamu simpan untuk dibaca atau dibaca lagi.</p>
+      </div>
+      <div class="bookshelf" id="bookmarkShelf" aria-live="polite"></div>
+      <p class="empty" id="bookmarkEmpty" hidden>Belum ada buku di Bookmark. Tekan ikon bookmark pada sampul buku untuk
+        menyimpannya.</p>
+    </section>
+
+    <!-- TENTANG KAMI -->
+    <section class="view" id="view-tentang" data-view="tentang" hidden>
+      <div class="view-head">
+        <h1>Tentang kami</h1>
+        <p>AM-Book dibuat agar membaca terasa mudah dan nyaman bagi siapa saja.</p>
+      </div>
+      <div class="info-grid">
+        <article class="info-card">
+          <h2>Perpustakaan tanpa hambatan</h2>
+          <p>Tidak perlu mendaftar, masuk, atau membayar. Buka website, pilih buku, dan baca.</p>
+        </article>
+        <article class="info-card">
+          <h2>Membaca yang sehat</h2>
+          <p>Reading timer menghitung durasi bacamu dan mengingatkan untuk istirahat setelah 2 jam.</p>
+        </article>
+        <article class="info-card">
+          <h2>Dibuat dengan sederhana</h2>
+          <p>HTML, CSS, dan JavaScript murni, tanpa framework, supaya ringan di perangkat apa pun.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-foot">
+    <span>AM-Book &copy; <span id="year"></span></span>
+  </footer>
+
+  <!-- DETAIL BUKU -->
+  <div class="modal" id="bookModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-card">
+      <button type="button" class="modal-close" id="modalClose" aria-label="Tutup">&times;</button>
+      <div class="modal-cover" id="modalCover"></div>
+      <div class="modal-body">
+        <h2 id="modalTitle"></h2>
+        <p class="modal-author" id="modalAuthor"></p>
+        <p class="modal-meta" id="modalMeta"></p>
+        <p id="modalDesc"></p>
+        <div class="modal-actions">
+          <a href="#" class="btn btn-primary" id="modalRead">Mulai Baca</a>
+          <button type="button" class="btn btn-ghost" id="modalBookmark">Tambah ke Bookmark</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Gradasi background edit.Rafly -->
+   <div id="ambient-bg" class="ambient-bg">
+
+   </div>
+
+  <script src="app.js?v=3"></script>
+</body>
+
+</html>

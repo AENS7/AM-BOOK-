@@ -1,0 +1,1092 @@
+/* ====================== STYLE ====================== */
+/* ==========================================================
+   AM-Book | style.css
+   Dasar bersama: tema, tipografi, tombol, modal, utilitas
+   ========================================================== */
+
+/* ---------- Tema ---------- */
+:root,
+[data-theme="dark"] {
+  --bg: #271e18;
+  --bg-soft: #382417;
+  --surface: #2d231d;
+  --text: #f1e7d8;
+  --text-muted: #b9a994;
+  --line: #22160e;
+  --accent: #d4a94f;
+  --accent-text: #1a1411;
+  --wood-light: #3d201a;
+  --wood-dark: #4a2e1a;
+  --wood-back: #2a1b12;
+  --shadow: rgba(0, 0, 0, .55);
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #f4f6f2;
+  --bg-soft: #e8ede6;
+  --surface: #ffffff;
+  --text: #1f2a24;
+  --text-muted: #5b6a61;
+  --line: #cfd8cf;
+  --accent: #2f6b55;
+  --accent-text: #ffffff;
+  --wood-light: #c79a67;
+  --wood-dark: #8d6338;
+  --wood-back: #d9c3a3;
+  --shadow: rgba(40, 50, 40, .28);
+  color-scheme: light;
+}
+
+[data-theme="warm"] {
+  --bg: #efe0c2;
+  --bg-soft: #e6d3ae;
+  --surface: #f7ecd5;
+  --text: #3b2a18;
+  --text-muted: #6e563b;
+  --line: #cdb68a;
+  --accent: #8a3b1f;
+  --accent-text: #fbf1dc;
+  --wood-light: #a8703f;
+  --wood-dark: #66401f;
+  --wood-back: #c9a877;
+  --shadow: rgba(70, 45, 20, .35);
+  color-scheme: light;
+}
+
+/* ---------- Reset ringan ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  transition: background-color .25s, color .25s;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 .5em;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+/* ---------- Brand ---------- */
+.brand {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: .01em;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------- Tombol ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .7rem 1.4rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1.2;
+  transition: transform .15s, background-color .2s, border-color .2s;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.08);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+}
+
+.btn-lg {
+  padding: 1rem 2.2rem;
+  font-size: 1.15rem;
+}
+
+.btn-sm {
+  padding: .45rem 1rem;
+  font-size: .95rem;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  transition: border-color .2s, background-color .2s;
+}
+
+.icon-btn:hover {
+  border-color: var(--accent);
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.icon-btn.is-saved,
+.icon-btn[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.icon-btn.is-saved svg,
+.icon-btn[aria-pressed="true"] svg {
+  fill: currentColor;
+}
+
+/* ---------- Switch tema ---------- */
+.theme-switch {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-soft);
+}
+
+.theme-switch button {
+  padding: .3rem .8rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font-size: .9rem;
+  color: var(--text-muted);
+}
+
+.theme-switch button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+/* ---------- Modal ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(10, 6, 3, .72);
+  overflow-y: auto;
+}
+
+.modal-card {
+  position: relative;
+  width: min(720px, 100%);
+  padding: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 24px 60px var(--shadow);
+  animation: pop .22s ease-out;
+}
+
+.modal-small {
+  width: min(480px, 100%);
+  text-align: center;
+}
+
+.modal-small h2 {
+  font-size: 1.5rem;
+}
+
+.modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 1.25rem;
+}
+
+.modal-small .modal-actions {
+  justify-content: center;
+}
+
+.hint {
+  margin: 1.25rem 0 0;
+  font-size: .9rem;
+  color: var(--text-muted);
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* ====================== LANDING ====================== */
+/* ==========================================================
+   AM-Book | landing.css
+   Landing page: gambar perpustakaan + overlay gelap.
+   Teks selalu terang agar terbaca di semua tema.
+   ========================================================== */
+
+.landing-body {
+  background: #120d0a;
+}
+
+.landing {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  color: #f6ecdc;
+  isolation: isolate;
+}
+
+/* Gambar latar. Jika img/perpustakaan.jpg belum ada, rak CSS di bawah dipakai. */
+.landing-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: url("images/background.jpeg") right center / cover no-repeat, #1a110c;
+}
+
+.landing-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(14, 9, 6, 0.96) 0%,
+      rgba(14, 9, 6, 0.85) 42%,
+      rgba(14, 9, 6, 0.35) 75%,
+      rgba(14, 9, 6, 0.12) 100%
+    ),
+    linear-gradient(0deg, rgba(14, 9, 6, 0.85) 0%, transparent 35%);
+}
+
+.landing-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem clamp(1.25rem, 5vw, 4rem);
+}
+
+.landing-top .brand {
+  font-size: 1.75rem;
+  color: #f6ecdc;
+}
+
+.landing-top .theme-switch {
+  background: rgba(255, 255, 255, .08);
+  border-color: rgba(255, 255, 255, .25);
+}
+
+.landing-top .theme-switch button {
+  color: #e5d6bf;
+}
+
+.landing-top .theme-switch button[aria-pressed="true"] {
+  background: #d4a94f;
+  color: #1a1411;
+}
+
+.landing-hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 44rem;
+  padding: 2rem clamp(1.25rem, 5vw, 4rem);
+}
+
+.landing-hero h1 {
+  font-size: clamp(2.4rem, 6.5vw, 4.6rem);
+  line-height: 1.05;
+  letter-spacing: -.01em;
+  margin-bottom: .6em;
+}
+
+.landing-hero p {
+  max-width: 34rem;
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  color: #e3d4bb;
+  margin-bottom: 2rem;
+}
+
+/* Tombol utama selalu emas di atas gambar */
+.landing .btn-primary {
+  background: #d4a94f;
+  color: #1a1411;
+}
+
+.landing-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 2rem;
+  padding: 1.25rem clamp(1.25rem, 5vw, 4rem);
+  border-top: 1px solid rgba(255, 255, 255, .15);
+  font-size: .95rem;
+  color: #d3c3a8;
+}
+
+@media (max-width: 560px) {
+  .landing-overlay {
+    background: linear-gradient(0deg, rgba(14, 9, 6, .94) 0%, rgba(14, 9, 6, .78) 100%);
+  }
+
+  .landing-top {
+    flex-wrap: wrap;
+  }
+
+  .landing-hero .btn {
+    width: 100%;
+  }
+}
+
+
+/* ====================== DASHBOARD ====================== */
+/* ==========================================================
+   AM-Book | dashboard.css
+   Navbar, tampilan (view), rak buku realistis, katalog,
+   bookmark, kartu info, modal detail buku.
+   ========================================================== */
+
+/* ---------- Navbar ---------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .8rem clamp(1rem, 4vw, 3rem);
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+}
+
+.nav-links>a {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .5rem .85rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.nav-links>a:hover {
+  color: var(--text);
+}
+
+.nav-links>a.active {
+  color: var(--accent-text);
+  background: var(--accent);
+}
+
+.nav-links .theme-switch {
+  margin-left: .75rem;
+}
+
+.badge {
+  min-width: 1.4em;
+  padding: 0 .4em;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-text);
+  font-size: .78rem;
+  text-align: center;
+}
+
+.nav-links>a.active .badge {
+  background: var(--accent-text);
+  color: var(--accent);
+}
+
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 11px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg-soft);
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--text);
+}
+
+/* ---------- Halaman ---------- */
+.page {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: 2rem clamp(1rem, 4vw, 3rem) 3rem;
+  min-height: 70vh;
+}
+
+.view-head {
+  margin-bottom: 1.75rem;
+  max-width: 40rem;
+}
+
+.view-head h1 {
+  font-size: clamp(1.9rem, 4.5vw, 2.8rem);
+}
+
+.view-head p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.site-foot {
+  padding: 1.5rem;
+  text-align: center;
+  font-size: .9rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- Toolbar katalog ---------- */
+.toolbar {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.search input {
+  width: 100%;
+  max-width: 28rem;
+  padding: .75rem 1.1rem;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.search input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.chip {
+  padding: .4rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.chip:hover {
+  border-color: var(--accent);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--text-muted);
+  border: 2px dashed var(--line);
+  border-radius: 14px;
+}
+
+/* ---------- Rak buku realistis ----------
+   Setiap .book duduk di atas papan kayu (::after). Karena sel grid
+   tanpa jarak horizontal, papan tiap baris menyambung penuh. */
+.bookshelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  margin-bottom: 1.5rem;
+  padding: 0 14px;
+  border-left: 14px solid var(--wood-dark);
+  border-right: 14px solid var(--wood-dark);
+  border-top: 12px solid var(--wood-dark);
+  border-radius: 6px 6px 0 0;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 46px, rgba(0, 0, 0, .06) 46px 48px),
+    var(--wood-back);
+  box-shadow: inset 0 14px 24px -10px var(--shadow), 0 14px 26px -14px var(--shadow);
+}
+
+.book {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 26px 12px 0;
+}
+
+.book::after {
+  content: "";
+  position: absolute;
+  left: -14px;
+  bottom: 0;
+  height: 20px;
+
+  background: linear-gradient(180deg,
+      var(--wood-light) 0%,
+      var(--wood-dark) 100%);
+
+  box-shadow: 0 6px 10px -4px var(--shadow);
+  z-index: 0;
+}
+
+/* Papan hanya dibuat oleh buku pertama setiap baris */
+.book::after {
+  display: none;
+}
+
+/* Baris desktop: 6 kolom */
+.book:nth-child(6n + 1)::after {
+  display: block;
+  width: calc(600% + 28px);
+}
+
+.book-open {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 132px;
+  aspect-ratio: 2 / 3;
+  margin-bottom: 20px;
+  /* sama dengan tinggi papan */
+  padding: 0;
+  border: 0;
+  border-radius: 3px 8px 8px 3px;
+  background: var(--cover, #6b3a2a);
+  color: #fff;
+  text-align: left;
+  box-shadow: -3px 0 0 rgba(0, 0, 0, .35) inset, 6px 8px 14px -4px var(--shadow);
+  transform-origin: bottom center;
+  transition: transform .2s ease;
+  overflow: hidden;
+}
+
+.book-open::before {
+  /* punggung buku */
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 12px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, .35), rgba(255, 255, 255, .12) 60%, transparent);
+}
+
+.book-open:hover {
+  transform: translateY(-8px) rotate(-1.5deg);
+}
+
+.book-cover-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px 10px 12px 20px;
+}
+
+.book-cover-title {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 700;
+  font-size: .98rem;
+  line-height: 1.15;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .5);
+}
+
+.book-cover-author {
+  font-size: .78rem;
+  opacity: .9;
+}
+
+.book-bookmark {
+  position: absolute;
+  z-index: 2;
+  top: 30px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(20, 12, 8, .7);
+  color: #fff;
+  transition: background-color .2s, transform .15s;
+}
+
+.book-bookmark:hover {
+  transform: scale(1.1);
+}
+
+.book-bookmark svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.book-bookmark.is-saved {
+  background: #d4a94f;
+  color: #1a1411;
+}
+
+.book-bookmark.is-saved svg {
+  fill: currentColo r;
+}
+
+/* ---------- Kartu info (Profile, Tentang Kami) ---------- */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+}
+
+.info-card {
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--accent);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.info-card h2 {
+  font-size: 1.25rem;
+}
+
+.info-card p,
+.info-card li {
+  color: var(--text-muted);
+}
+
+.info-card ol {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+/* ---------- Modal detail buku ---------- */
+.modal .modal-card:not(.modal-small) {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.modal-close {
+  position: absolute;
+  top: .6rem;
+  right: .8rem;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--text-muted);
+}
+
+.modal-close:hover {
+  color: var(--text);
+}
+
+.modal-cover {
+  aspect-ratio: 2 / 3;
+  border-radius: 3px 8px 8px 3px;
+  background: var(--cover, #6b3a2a);
+  box-shadow: -3px 0 0 rgba(0, 0, 0, .35) inset, 8px 10px 18px -6px var(--shadow);
+}
+
+.modal-body h2 {
+  font-size: 1.8rem;
+  padding-right: 2rem;
+}
+
+.modal-author {
+  margin-bottom: .25rem;
+  font-weight: 600;
+}
+
+.modal-meta {
+  color: var(--text-muted);
+  font-size: .95rem;
+}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 860px) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: .25rem;
+    padding: 1rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 16px 24px -12px var(--shadow);
+    display: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links>a {
+    padding: .75rem 1rem;
+  }
+
+  .nav-links .theme-switch {
+    margin: .5rem 0 0;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .bookshelf {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    padding: 0 8px;
+    border-left-width: 8px;
+    border-right-width: 8px;
+  }
+
+  .book {
+    padding: 22px 8px 0;
+  }
+
+  .book::after {
+    left: -8px;
+    right: -8px;
+  }
+
+  .book-cover-title {
+    font-size: .85rem;
+  }
+
+  .modal .modal-card:not(.modal-small) {
+    grid-template-columns: 1fr;
+    padding-top: 2.5rem;
+  }
+
+  .modal-cover {
+    width: 130px;
+    margin: 0 auto;
+  }
+
+  .modal-actions .btn {
+    flex: 1 1 100%;
+  }
+}
+
+
+/* ====================== READER ====================== */
+/* ==========================================================
+   AM-Book | reader.css
+   Halaman membaca, timer, pager, countdown istirahat.
+   ========================================================== */
+
+.reader-body {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.reader-bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .6rem clamp(.75rem, 3vw, 2rem);
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--line);
+}
+
+.reader-title {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.reader-title strong {
+  font-family: "Fraunces", Georgia, serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reader-title span {
+  font-size: .85rem;
+  color: var(--text-muted);
+}
+
+.reader-timer {
+  padding: .35rem .9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-soft);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---------- Kertas bacaan ---------- */
+.reader {
+  width: min(720px, 100%);
+  margin: 0 auto;
+  padding: 1.75rem clamp(.75rem, 3vw, 1.5rem) 3rem;
+}
+
+.paper {
+  min-height: 60vh;
+  padding: clamp(1.5rem, 5vw, 3.25rem);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  box-shadow: 0 18px 40px -22px var(--shadow);
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.1rem, 2.4vw, 1.25rem);
+  line-height: 1.85;
+}
+
+.paper:focus {
+  outline: none;
+}
+
+.paper h1 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 1.25rem;
+}
+
+.paper p {
+  margin-bottom: 1.2em;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-top: 1.25rem;
+}
+
+.pager span {
+  color: var(--text-muted);
+  font-size: .95rem;
+  text-align: center;
+}
+
+.pager .btn:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+/* ---------- Countdown istirahat ---------- */
+.countdown {
+  margin: .5rem 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(3.5rem, 16vw, 5rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 720px) {
+  .reader-bar {
+    flex-wrap: wrap;
+  }
+
+  .reader-title {
+    order: 5;
+    flex-basis: 100%;
+  }
+
+  .reader-bar .theme-switch {
+    margin-left: auto;
+  }
+
+  .reader-bar .theme-switch button {
+    padding: .3rem .6rem;
+    font-size: .82rem;
+  }
+
+  .pager span {
+    order: -1;
+    flex-basis: 100%;
+  }
+
+  .pager .btn {
+    flex: 1;
+  }
+}
+
+/* Layer ambient background edit.Rafly */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center 25%;
+  filter: blur(8px) saturate(1.25) brightness(0.95); 
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 0.45s ease, background-image 0.35s ease;
+  pointer-events: none;
+}
+
+/* Lapisan gradasi */
+.ambient-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(to bottom, rgba(39, 30, 24, 0.2) 0%, var(--bg) 95%),
+    radial-gradient(circle at 50% 35%, transparent 30%, var(--bg) 90%);
+}
+
+/* Kursor mengarah ke buku */
+.ambient-bg.active {
+  opacity: 0.78;
+}
+
+/* Dashboar & Navigasi Solid */
+main, .site-foot {
+  position: relative;
+  z-index: 1;
+}
